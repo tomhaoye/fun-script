@@ -1,5 +1,10 @@
 <?php
 
+function serverOS()
+{
+    return PHP_OS == 'Darwin' ? 1 : 0;
+}
+
 function get_machine_status()
     {
         $linux = "top -b -n 2 -p0|grep -E \"(load|Cpu|Mem)\"|awk -F ': ' '{print $2}'";
@@ -86,4 +91,8 @@ function get_machine_status()
 
         return ['cpu_usage' => $cpu_info_key, 'mem_usage' => $mem_info_key, 'load_avg' => $load_avg_key];
     }
+
+$status = get_machine_status();
+print_r($status);
+
 
